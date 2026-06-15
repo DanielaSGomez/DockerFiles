@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  ubuntu:
+    image: ubuntu
+    tty: true
+    container_name: ubuntu
+  
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "8080:80"
+      - "443:443"
+    networks:
+      - redtest
+
+networks:
+  redtest:
+    external: true
+  
