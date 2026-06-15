@@ -1,0 +1,17 @@
+FROM ubuntu
+
+RUN apt-get update && apt-get install -y \
+    python3 \
+    curl \
+    nano \
+    nginx
+
+COPY . /app
+
+WORKDIR /app
+
+# to run commands after container build define CMD directive
+CMD ["nginx", "-g", "daemon off;"]
+
+# we define the cmd command to initialize nginx service
+# after container creation
