@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  python:
+    image: python
+    tty: true
+    container_name: python
+    volumes:
+      - .:/scripts
+  
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - "3312:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8085:80"
+    environment:
+      - PMA_HOST=mysql
+
+  redis:
+    image: redis
+    container_name: redis_stack
+    ports:
+      - "6379:6379"
+volumes:
+  db-data: 
+
+  
